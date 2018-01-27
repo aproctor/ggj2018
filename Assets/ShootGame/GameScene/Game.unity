@@ -743,7 +743,7 @@ Prefab:
     - target: {fileID: 114621700516405580, guid: 27bbe15835253475489a7965996d0810,
         type: 2}
       propertyPath: fireSpeed
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114621700516405580, guid: 27bbe15835253475489a7965996d0810,
         type: 2}
@@ -765,6 +765,17 @@ Prefab:
       propertyPath: bulletGod
       value: 
       objectReference: {fileID: 2069450030}
+    - target: {fileID: 114621700516405580, guid: 27bbe15835253475489a7965996d0810,
+        type: 2}
+      propertyPath: fireRate
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 212767953135411486, guid: 27bbe15835253475489a7965996d0810,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b2f3352f2b0de4be5a74c9dbc93cfb5c,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 27bbe15835253475489a7965996d0810, type: 2}
   m_IsPrefabParent: 0
