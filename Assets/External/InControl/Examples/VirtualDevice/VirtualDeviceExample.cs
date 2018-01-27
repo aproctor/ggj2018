@@ -1,10 +1,9 @@
-using System;
-using UnityEngine;
-using InControl;
-
-
 namespace VirtualDeviceExample
 {
+	using InControl;
+	using UnityEngine;
+
+
 	// This example illustrates how to make a custom virtual controller for
 	// the purpose of feeding custom input into InControl.
 	//
@@ -16,13 +15,15 @@ namespace VirtualDeviceExample
 	// virtual device, you can provide whatever input you desire and you gain all the
 	// benefits of being a first class device within InControl.
 	//
-	// This example creates a single, simple virtual device that generates input
-	// automatically. For more advanced situations you may want to have a device
-	// manager to organize multiple devices. For an example of how to accomplish this,
+	// For more advanced situations you may want to have a device manager to organize
+	// multiple devices. For an example of how to accomplish this,
 	// see XInputDeviceManager and XInputDevice.
 	//
 	public class VirtualDeviceExample : MonoBehaviour
 	{
+		public GameObject leftObject;
+		public GameObject rightObject;
+
 		VirtualDevice virtualDevice;
 
 
@@ -47,10 +48,15 @@ namespace VirtualDeviceExample
 			// Use last device which provided input.
 			var inputDevice = InputManager.ActiveDevice;
 
-			// Rotate target object to reflect left stick angle.
-			transform.rotation = Quaternion.AngleAxis( inputDevice.LeftStick.Angle, Vector3.back );
+			// Rotate left object with left stick.
+			leftObject.transform.Rotate( Vector3.down, 500.0f * Time.deltaTime * inputDevice.LeftStickX, Space.World );
+			leftObject.transform.Rotate( Vector3.right, 500.0f * Time.deltaTime * inputDevice.LeftStickY, Space.World );
 
-			// Get color based on action button pressed.
+			// Rotate right object with right stick.
+			rightObject.transform.Rotate( Vector3.down, 500.0f * Time.deltaTime * inputDevice.RightStickX, Space.World );
+			rightObject.transform.Rotate( Vector3.right, 500.0f * Time.deltaTime * inputDevice.RightStickY, Space.World );
+
+			// Get color based on action buttons.
 			var color = Color.white;
 			if (inputDevice.Action1.IsPressed)
 			{
@@ -68,7 +74,9 @@ namespace VirtualDeviceExample
 			{
 				color = Color.yellow;
 			}
-			GetComponent<Renderer>().material.color = color;
+
+			// Color the object.
+			leftObject.GetComponent<Renderer>().material.color = color;
 		}
 	}
 }

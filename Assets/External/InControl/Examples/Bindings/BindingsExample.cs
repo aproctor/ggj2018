@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using UnityEngine;
-using InControl;
-
-
 namespace BindingsExample
 {
+	using InControl;
+	using UnityEngine;
+
+
 	public class BindingsExample : MonoBehaviour
 	{
 		Renderer cachedRenderer;
@@ -19,6 +15,7 @@ namespace BindingsExample
 		{
 			// See PlayerActions.cs for this setup.
 			playerActions = PlayerActions.CreateWithDefaultBindings();
+			//playerActions.Move.OnLastInputTypeChanged += ( lastInputType ) => Debug.Log( lastInputType );
 
 			LoadBindings();
 		}
@@ -78,11 +75,20 @@ namespace BindingsExample
 			const float h = 22.0f;
 			var y = 10.0f;
 
-			GUI.Label( new Rect( 10, y, 300, y + h ), "Last Input Type: " + playerActions.LastInputType.ToString() );
+			GUI.Label( new Rect( 10, y, 300, y + h ), "Last Input Type: " + playerActions.LastInputType );
+			y += h;
+
+			//GUI.Label( new Rect( 10, y, 300, y + h ), "Active Device: " + playerActions.ActiveDevice.Name );
+			//y += h;
+
+			GUI.Label( new Rect( 10, y, 300, y + h ), "Last Device Class: " + playerActions.LastDeviceClass );
+			y += h;
+
+			GUI.Label( new Rect( 10, y, 300, y + h ), "Last Device Style: " + playerActions.LastDeviceStyle );
 			y += h;
 
 			var actionCount = playerActions.Actions.Count;
-			for (int i = 0; i < actionCount; i++)
+			for (var i = 0; i < actionCount; i++)
 			{
 				var action = playerActions.Actions[i];
 
@@ -92,11 +98,14 @@ namespace BindingsExample
 					name += " (Listening)";
 				}
 				name += " = " + action.Value;
-				GUI.Label( new Rect( 10, y, 300, y + h ), name );
+				//name += " via " + action.ActiveDevice.Name;
+				//name += ", class: " + action.LastDeviceClass;
+				//name += ", style: " + action.LastDeviceStyle;
+				GUI.Label( new Rect( 10, y, 500, y + h ), name );
 				y += h;
 
 				var bindingCount = action.Bindings.Count;
-				for (int j = 0; j < bindingCount; j++)
+				for (var j = 0; j < bindingCount; j++)
 				{
 					var binding = action.Bindings[j];
 

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-
-namespace InControl
+﻿namespace InControl
 {
+	using UnityEngine;
+
+
 	public struct KeyInfo
 	{
 		private readonly Key key;
@@ -37,7 +34,7 @@ namespace InControl
 			get
 			{
 				var keyCodeCount = keyCodes.Length;
-				for (int i = 0; i < keyCodeCount; i++)
+				for (var i = 0; i < keyCodeCount; i++)
 				{
 					if (Input.GetKey( keyCodes[i] ))
 					{
@@ -54,7 +51,11 @@ namespace InControl
 			get
 			{
 				if (Application.platform == RuntimePlatform.OSXEditor ||
-				    Application.platform == RuntimePlatform.OSXPlayer)
+					Application.platform == RuntimePlatform.OSXPlayer
+#if !UNITY_5_4_OR_NEWER
+					|| Application.platform == RuntimePlatform.OSXWebPlayer
+#endif
+				   )
 				{
 					return macName;
 				}
@@ -203,6 +204,10 @@ namespace InControl
 			new KeyInfo( Key.F14, "F14", KeyCode.F14 ),
 			new KeyInfo( Key.F15, "F15", KeyCode.F15 ),
 
+			// Other
+			new KeyInfo( Key.AltGr, "Alt Graphic", KeyCode.AltGr ),
+			new KeyInfo( Key.CapsLock, "Caps Lock", KeyCode.CapsLock ),
+
 			// Unity doesn't define/support these :(
 			// new KeyInfo( Key.F16, "F16", KeyCode.F16 ),
 			// new KeyInfo( Key.F17, "F17", KeyCode.F17 ),
@@ -211,3 +216,4 @@ namespace InControl
 		};
 	}
 }
+
