@@ -14,11 +14,13 @@ public class PlayerController : MonoBehaviour {
 	private Vector2 lookDirection = Vector2.zero;
 	public float minMoveAmt = 0.05f;
 	public float moveSpeed = 1f;
+	public float boostMultiplier = 3f;
+	public bool boosting = false;
 
 	[Header("Object Links")]
 	public Rigidbody2D rigidbody;
 
-	public GameObject debugBulletPrefab;
+	public BulletGod bulletGod;
 	public Transform firePoint1;
 
 
@@ -37,12 +39,20 @@ public class PlayerController : MonoBehaviour {
 	void UpdateMovement() {
 		lookDirection = device.Direction.Vector;
 
-		//rotate ship
-		this.transform.rotation = Quaternion.Euler(0f, 0f, -device.Direction.Angle);
+		boosting = device.Action2;
 
+	
 		float movePower = lookDirection.sqrMagnitude;
 		if (movePower > minMoveAmt) {
-			this.rigidbody.AddForce(lookDirection * moveSpeed);
+
+			//rotate ship
+			this.transform.rotation = Quaternion.Euler(0f, 0f, -device.Direction.Angle);
+
+			float speed = moveSpeed;
+			if (boosting) {
+				speed = speed * boostMultiplier;
+			}
+			this.rigidbody.velocity = lookDirection * speed;
 		}			
 	}
 
@@ -52,12 +62,12 @@ public class PlayerController : MonoBehaviour {
 	void UpdateFireControlls() {
 		if (device.Action1) {
 			if (Time.time - _lastFireTime > fireRate) {
-				Debug.LogError("Pow1");	
-
 				//Debug bullet fire
-				GameObject bullet = GameObject.Instantiate(debugBulletPrefab, firePoint1.position, Quaternion.identity);
+
+				GameObject bullet = bulletGod.SpawnBullet();
+				bullet.transform.position = firePoint1.position;
 				Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
-				bulletRB.AddForce(Vector2.up*fireSpeed);
+				bulletRB.velocity = this.transform.up * fireSpeed;
 
 				_lastFireTime = Time.time;
 			}
