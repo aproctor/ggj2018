@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour {
 	[HideInInspector]
 	public InputDevice device = null;
 
+	public int lives = 3;
+
 	//Movement
 	private Vector2 lookDirection = Vector2.zero;
 	public float minMoveAmt = 0.05f;
@@ -18,11 +20,20 @@ public class PlayerController : MonoBehaviour {
 	public bool boosting = false;
 
 	[Header("Object Links")]
-	public Rigidbody2D rigidbody;
-
-	public BulletGod bulletGod;
+	public Rigidbody2D rbody;
+	public LifeSupport lifeSupport;
 	public Transform firePoint1;
 
+	[Header("Gods")]
+	public BulletGod bulletGod;
+	public DeathGod deathGod;
+
+	public bool canRespawn = false;
+	public bool Alive { 
+		get {
+			return this.lifeSupport.life > 0;
+		}
+	}
 
 	void Update() {
 		if (device == null && InputManager.Devices.Count >= 1) {
@@ -31,8 +42,16 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (device != null && activated) {
-			UpdateMovement();
-			UpdateFireControlls();
+			if (this.Alive) {
+				UpdateMovement();
+				UpdateFireControlls();
+			} else {
+				if (device.Action1) {
+					if (canRespawn) {
+						deathGod.TryRespawn();
+					}
+				}
+			}
 		}
 	}
 
@@ -52,7 +71,7 @@ public class PlayerController : MonoBehaviour {
 			if (boosting) {
 				speed = speed * boostMultiplier;
 			}
-			this.rigidbody.velocity = lookDirection * speed;
+			this.rbody.velocity = lookDirection * speed;
 		}			
 	}
 
@@ -64,7 +83,7 @@ public class PlayerController : MonoBehaviour {
 			if (Time.time - _lastFireTime > fireRate) {
 				//Debug bullet fire
 
-				GameObject bullet = bulletGod.SpawnBullet();
+				Bullet bullet = bulletGod.SpawnBullet();
 				bullet.transform.position = firePoint1.position;
 				Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
 				bulletRB.velocity = this.transform.up * fireSpeed;
@@ -73,6 +92,23 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 	}
+
+	public void Die() {		
+		StartCoroutine(DeathThrows());
+	}
+
+	IEnumerator DeathThrows() {
+		yield return new WaitForSeconds(2f);
+
+		canRespawn = true;
+	}
+
+	public void Respawn() {
+		canRespawn = false;
+
+		this.lifeSupport.Respawn();
+	}
+
 
 	void OnDrawGizmos() {
 		if (lookDirection.sqrMagnitude > minMoveAmt) {

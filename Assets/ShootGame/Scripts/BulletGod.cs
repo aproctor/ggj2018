@@ -5,26 +5,34 @@ using UnityEngine;
 public class BulletGod : MonoBehaviour {
 
 	public int bulletLimit = 500;
-	public GameObject bulletPrefab;
-	public GameObject[] bulletPool;
+	public Bullet bulletPrefab;
+	public Bullet[] bulletPool;
 
 	private int currentOffset = 0;
 
 	// Use this for initialization
 	void Start () {
-		bulletPool = new GameObject[bulletLimit];
+		bulletPool = new Bullet[bulletLimit];
 		for (int i = 0; i < bulletLimit; i++) {
-			GameObject bullet = Instantiate(bulletPrefab, this.transform) as GameObject;
+			Bullet bullet = Instantiate(bulletPrefab, this.transform) as Bullet;
 			bulletPool[i] = bullet;
-			bullet.SetActive(false);
+			bullet.gameObject.SetActive(false);
 		}
 	}
 
-	public GameObject SpawnBullet() {		
-		GameObject bullet = bulletPool[currentOffset];
+	public Bullet SpawnBullet() {		
+		Bullet bullet = bulletPool[currentOffset];
 		currentOffset = (currentOffset + 1) % bulletLimit;
 
-		bullet.SetActive(true);
+		bullet.Respawn();
 		return bullet;
+	}
+
+	public void TameBullets() {
+		for (int i = 0; i < bulletLimit; i++) {
+			if (bulletPool[i].energy > 0) {
+				bulletPool[i].energy = 1;
+			}
+		}
 	}
 }

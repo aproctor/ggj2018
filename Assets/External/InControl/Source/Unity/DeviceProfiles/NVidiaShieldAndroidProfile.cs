@@ -12,6 +12,7 @@ namespace InControl
 			Name = "NVIDIA Shield Controller";
 			Meta = "NVIDIA Shield Controller on Android";
 
+			#pragma warning disable
 			SupportedPlatforms = new[] {
 				"Android"
 			};

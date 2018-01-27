@@ -142,7 +142,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 531156421}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -244,12 +244,13 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2069450029}
+  - {fileID: 654251621}
   - {fileID: 659233485}
   - {fileID: 1309852016}
   - {fileID: 50866943}
-  - {fileID: 654251621}
+  - {fileID: 1665592561}
   - {fileID: 583611991}
-  - {fileID: 2069450029}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -311,7 +312,7 @@ Transform:
   - {fileID: 588972105}
   - {fileID: 1263008139}
   m_Father: {fileID: 531156421}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &588972104
 GameObject:
@@ -367,6 +368,12 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 28.14, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &611730646 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114621700516405580, guid: 27bbe15835253475489a7965996d0810,
+    type: 2}
+  m_PrefabInternal: {fileID: 1665592560}
+  m_Script: {fileID: 11500000, guid: cd1a1c5d712f747d3a47550204eb1b97, type: 3}
 --- !u!1 &654251620
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,8 +382,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 654251621}
+  - component: {fileID: 654251622}
   m_Layer: 0
-  m_Name: PlayerSpawnPoint
+  m_Name: DeathGod
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -391,11 +399,25 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1665592561}
+  m_Children: []
   m_Father: {fileID: 531156421}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &654251622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 654251620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4c5f197713f74c67959a790b46e4af9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLives: 5
+  currentLives: 3
+  spawnPoint: {fileID: 654251621}
+  player: {fileID: 611730646}
 --- !u!1 &659233481
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,7 +497,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 531156421}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1251417602
 GameObject:
@@ -613,7 +635,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 531156421}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1309852017
 MonoBehaviour:
@@ -706,8 +728,13 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 654251621}
+    m_TransformParent: {fileID: 531156421}
     m_Modifications:
+    - target: {fileID: 114990314985435986, guid: 27bbe15835253475489a7965996d0810,
+        type: 2}
+      propertyPath: OnDie.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4745575547475326, guid: 27bbe15835253475489a7965996d0810, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -722,15 +749,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4745575547475326, guid: 27bbe15835253475489a7965996d0810, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4745575547475326, guid: 27bbe15835253475489a7965996d0810, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4745575547475326, guid: 27bbe15835253475489a7965996d0810, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4745575547475326, guid: 27bbe15835253475489a7965996d0810, type: 2}
       propertyPath: m_LocalRotation.w
@@ -738,27 +765,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4745575547475326, guid: 27bbe15835253475489a7965996d0810, type: 2}
       propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114621700516405580, guid: 27bbe15835253475489a7965996d0810,
-        type: 2}
-      propertyPath: fireSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114621700516405580, guid: 27bbe15835253475489a7965996d0810,
-        type: 2}
-      propertyPath: moveSpeed
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 50633878694073392, guid: 27bbe15835253475489a7965996d0810,
-        type: 2}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 50633878694073392, guid: 27bbe15835253475489a7965996d0810,
-        type: 2}
-      propertyPath: m_AngularDrag
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114621700516405580, guid: 27bbe15835253475489a7965996d0810,
         type: 2}
@@ -767,15 +774,34 @@ Prefab:
       objectReference: {fileID: 2069450030}
     - target: {fileID: 114621700516405580, guid: 27bbe15835253475489a7965996d0810,
         type: 2}
-      propertyPath: fireRate
-      value: 0.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 212767953135411486, guid: 27bbe15835253475489a7965996d0810,
-        type: 2}
-      propertyPath: m_Sprite
+      propertyPath: deathGod
       value: 
-      objectReference: {fileID: 21300000, guid: b2f3352f2b0de4be5a74c9dbc93cfb5c,
-        type: 3}
+      objectReference: {fileID: 654251622}
+    - target: {fileID: 114990314985435986, guid: 27bbe15835253475489a7965996d0810,
+        type: 2}
+      propertyPath: OnDie.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114990314985435986, guid: 27bbe15835253475489a7965996d0810,
+        type: 2}
+      propertyPath: OnDie.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114990314985435986, guid: 27bbe15835253475489a7965996d0810,
+        type: 2}
+      propertyPath: OnDie.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 2069450030}
+    - target: {fileID: 114990314985435986, guid: 27bbe15835253475489a7965996d0810,
+        type: 2}
+      propertyPath: OnDie.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: TameBullets
+      objectReference: {fileID: 0}
+    - target: {fileID: 114990314985435986, guid: 27bbe15835253475489a7965996d0810,
+        type: 2}
+      propertyPath: OnDie.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 27bbe15835253475489a7965996d0810, type: 2}
   m_IsPrefabParent: 0
@@ -811,7 +837,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 531156421}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2069450030
 MonoBehaviour:
@@ -825,6 +851,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletLimit: 500
-  bulletPrefab: {fileID: 1982656445813178, guid: c3f30618b1ac54eacb19f17ff1bfc06a,
+  bulletPrefab: {fileID: 114844129937531322, guid: c3f30618b1ac54eacb19f17ff1bfc06a,
     type: 2}
   bulletPool: []
