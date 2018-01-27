@@ -206,11 +206,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!4 &52371841 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4366694654761760, guid: 27bbe15835253475489a7965996d0810,
-    type: 2}
-  m_PrefabInternal: {fileID: 1665592560}
 --- !u!1 &531156419
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +436,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.3848314, g: 0.37959558, b: 0.43382353, a: 0}
+  m_BackGroundColor: {r: 0.16463022, g: 0.21908918, b: 0.77205884, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -744,60 +739,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114621700516405580, guid: 27bbe15835253475489a7965996d0810,
-        type: 2}
-      propertyPath: minMoveAmt
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 114621700516405580, guid: 27bbe15835253475489a7965996d0810,
-        type: 2}
-      propertyPath: rigidbody
-      value: 
-      objectReference: {fileID: 2007188271}
-    - target: {fileID: 114621700516405580, guid: 27bbe15835253475489a7965996d0810,
-        type: 2}
-      propertyPath: moveSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4698476439902784, guid: 27bbe15835253475489a7965996d0810, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4698476439902784, guid: 27bbe15835253475489a7965996d0810, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212767953135411486, guid: 27bbe15835253475489a7965996d0810,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 5d081f902b55b44759be277c18fb7f1b,
-        type: 3}
-    - target: {fileID: 4366694654761760, guid: 27bbe15835253475489a7965996d0810, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.505
-      objectReference: {fileID: 0}
-    - target: {fileID: 114621700516405580, guid: 27bbe15835253475489a7965996d0810,
-        type: 2}
-      propertyPath: debugBulletPrefab
-      value: 
-      objectReference: {fileID: 1982656445813178, guid: c3f30618b1ac54eacb19f17ff1bfc06a,
-        type: 2}
-    - target: {fileID: 114621700516405580, guid: 27bbe15835253475489a7965996d0810,
-        type: 2}
-      propertyPath: firePoint1
-      value: 
-      objectReference: {fileID: 52371841}
-    - target: {fileID: 114621700516405580, guid: 27bbe15835253475489a7965996d0810,
-        type: 2}
-      propertyPath: fireRate
-      value: 0.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 114621700516405580, guid: 27bbe15835253475489a7965996d0810,
-        type: 2}
-      propertyPath: fireSpeed
-      value: 5.81
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 27bbe15835253475489a7965996d0810, type: 2}
   m_IsPrefabParent: 0
@@ -806,43 +747,3 @@ Transform:
   m_PrefabParentObject: {fileID: 4745575547475326, guid: 27bbe15835253475489a7965996d0810,
     type: 2}
   m_PrefabInternal: {fileID: 1665592560}
---- !u!1 &2007188269 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1008600794797956, guid: 27bbe15835253475489a7965996d0810,
-    type: 2}
-  m_PrefabInternal: {fileID: 1665592560}
---- !u!50 &2007188271
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2007188269}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0.24
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 0
---- !u!58 &2007188272
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2007188269}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.12}
-  serializedVersion: 2
-  m_Radius: 0.35
